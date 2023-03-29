@@ -123,24 +123,40 @@ The training dataset was resampled and predictions were made with the BalancedRa
 - Precision: 0.04
 - Recall: 0.67
 
+The BalancedRandomForestClassifier exhbits an accuracy score of 0.79. This is a good score. The precision is very low, but at a value of 0.04, its about 4 times higher
+than the precision scores of any other model previously mentioned. The Recall is relatively high at 0.67. This model has some advantages over theothers in that 
+it has a high accuracy score and has relatively high Recall. This model could be considered favorable for credit loan risk predictions.
 
 
 ### EasyEnsembleClassifier
+The EasyEnsembleClassifer ML model was used to make credit loan risk predictions. This method takes the majority class of data and allocates it into subsets of equal size. The size of each new subgroup of the split-up majority class of data is equal to the minority class of data. The classifier is trained on each subset of the split-up majority data class and the minority data class. Thus, an ensemble of classifiers is generated and predictions can be made by the ensemble. The final prediction is made by taking the weighted average of all of the predictions made by each ensemble. 
 
-
-
-
+![EasyEnsembleClassifier](https://github.com/willmino/Credit_Risk_Analysis/blob/main/images/EasyEnsembleClassifier.png)
 
 - Balanced Accuracy Score: 0.93
 - Precision: 0.07
 - Recall: 0.91
 
+The EasyEnsembleClassifer exhibited an accuracy score of 0.93. This is very high and favorable. 93% of all credit loan predictions were accurate.
+The Precision of the model is low because there were 979 false predictions made. Because the dataset is so large, this does not have much of an impact on the overall accuracy of the model. Yet the Precision for this model is higher than any of there other ML models because its Precision value was 0.07. Again this is about 7 times higher than any other model. The Recall of the EasyEnsembleClassifier model i 0.91. This value was very high and favorable. This means that 91% of all high_risk loans were correctly detected by the EasyEnsembleClassifier model. This model could be considered favorable.
 
 ## Summary
 
-Summarize the results of the machine learning models.
-Recommend a model to predict loan credit risk. If you choose to not recommend an ML mode, justify your reasoning.
+I ran several ML models to predict credit risks associated with given out particular loans. Its useful for a bank or credit company to know
+the history of an individuals credit before they loan money to them. Sometimes the bank will only have access to limited information and might want to predict whether
+loans from certain customers could be constituted as either low_risk or high_risk. These machine learning models took input feature data (independent variables)
+in order to fit data to each model, and subsequently make predictions. Again, this dataset was highly imbalanced. Most of the records were for low_risk loans. Thus, to handle the imbalance of the dataset, several methods for resampling the data were made. In order to make accurate predictions with ML models, the data sets should
+have similar sizes. When resampling yielded similarly sized data sets, the ML models began to make as accurate of predictions as possible.
 
+The most inaccurate predictions were made by the initial 4 models. These models, in conjunction with LogisticRegression, were either resampled with
+RandomOverSampler, SMOTE Oversampling, ClusterCentroids Undersampling, and SMOTEENN combination oversampling and undersampling. These models were considered
+inaccurate and not favorable because they all had very low Precision values, each at about a value of 0.01. Also, their Recall values were generally low. 
+Going from left to right with the order of ML models previosuly mentioned, their respective Recall values were 0.61, 0.59, 0.59, and 0.70.
+
+Recall is a valuable figure for credit risk detection as we want to minimize as many false negatives as possible. If banks minimize false negatives in this context, they will avoid as many bad loans as possible.
+Precision is also valuable in credit risk detection because we want to minimize the number of false positives. Doing so will allow banks to maximize their opportunities for good lending opportunities. At the same time, having low Precision (large number of false positives for high_risk loans) will cause banks to pass up on these valuable opportunities. Thus, there is a balance in credit loan risk prediction by taking in to account the overall accuracy, Precision, and Recall of the prediction model.
+
+Even through a range of the models exhibited medium to high levels of Recall, meaning the percentage of correct high_risk predictions out of all truly high risk loans, and medium to high accuracy, most of the models exhibited dismal Precision ranging from values of 0.01 to 0.07 This means out of all the high_risk loan predictions made, only 7% of these predictions were accurate. This specific model was the EasyEnsembleClassifier. This means that 93% of the high_risk credit loan predictions were false positives. There were 979 false positive predictions made by this model. The bank would have to balance the fact that they are passing on about 979 low_risk and potentially profitable loans. Out of the 17205 predictions made by the model, the 979 false positive but acutally low_risk loans comprise 6% of all the total potential loans. If the bank is ok with losing about 6% of all of its good quality loans, with the trade off of avoiding 91% of all the high_risk loans available (Recall level of 0.91), then I would see this model as actually a viable option for the bank. Who knows how much money banks or credit companies lose each year due to bad loans, but I can see the EasyEnsembleClassifier ML model as a valuable tool for capitalizing upon as many high quality loans as possible. Thus, I would recommend the EasyEnsembleClassifer for credit loan risk predictions.
 
 ## Sources
 1. This code, which can be found in both .ipynb files:
@@ -154,6 +170,7 @@ https://courses.bootcampspot.com/courses/2638/pages/18-dot-3-1-overview-of-logis
 
 
 2. Imbalanced-Learn  BalancedRandomForestClassifier
+The code for this model and the explanation for the model in the results section was obtained from info in the documentation of the model on the Imbalanced-Learn website.
 
 `from imblearn.ensemble import BalancedRandomForestClassifier`
 
@@ -166,6 +183,8 @@ https://courses.bootcampspot.com/courses/2638/pages/18-dot-3-1-overview-of-logis
 source: https://imbalanced-learn.org/stable/references/generated/imblearn.ensemble.BalancedRandomForestClassifier.html
 
 3. Imbalanced-learn EasyEnsembleClassifier
+The code for this model and the explanation for the model in the results section was obtained from info in the documentation of the model on the Imbalanced-Learn website.
+
 
 `from imblearn.ensemble import EasyEnsembleClassifier`
 
