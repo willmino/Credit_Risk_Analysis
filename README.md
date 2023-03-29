@@ -117,6 +117,7 @@ Despite a medium-low level accuracy score of 0.62 and a vew low Precision value 
 ### BalancedRandomForestClassifier
 The training dataset was resampled and predictions were made with the BalancedRandomForestClassifier ML method. This method makes small decision trees compared to the larger decision trees made by other algorithms. Small datasets are generated from randomly sampled data. This process is called bootstrapping. Then, a small decision tree is made based on each new dataset. A different subset of features is chosen for each small decision tree. So none of these small decision trees are intended to have the same feature data inputs (independent variables). The algorithm makes predictions by passing a single data point through each tree. Each tree will make a vote on what the prediction will be. The final prediction is determined by whatever label is classified as the majority of the votes. This voting process is called Aggregation. This overall process is called Bagging (Bootstrapping + Aggregation).
 
+![BalancedRandomForest](https://github.com/willmino/Credit_Risk_Analysis/blob/main/images/BalancedRandomForest.png)
 
 - Balanced Accuracy Score: 0.79
 - Precision: 0.04
@@ -125,6 +126,10 @@ The training dataset was resampled and predictions were made with the BalancedRa
 
 
 ### EasyEnsembleClassifier
+
+
+
+
 
 - Balanced Accuracy Score: 0.93
 - Precision: 0.07
