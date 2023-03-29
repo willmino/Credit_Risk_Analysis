@@ -91,13 +91,10 @@ The only potentially favorable aspect of this model is the Recall at a value of 
 The training dataset was resampled with the SMOTEENN ML method from Scikit-learn. This method combines the SMOTE oversampling method with the Edited Nearest Neighbors (ENN)
 algorithms. The minority class is oversampled with SMOTE. The resulting data is then cleaned with ENN. Since SMOTE creates interpolated data points depending on its nearest neighbors, sometimes the two nearest neighbors of a data point belong to two different classes. Thus, theis data point is dropped by the ENN component of SMOTE-ENN.
 
-Here is an example of SMOTEENN in action. Let's say the majority low_risk credit loan group is the larger purple dataset, and the minority high_risk smaller dataset is the yellow group. The yellow group was oversampled with SMOTE to produce the image below. Note that in the boxed area, there is a mixture of low_risk and high_risk loans in the data set. These two different classes of loans have similar characteristics. Thus, it will make the regular SMOTE algorithm inaccurate.
-![SMOTEENN_figure1](https://courses.bootcampspot.com/courses/2638/files/2314921/preview)
-
+Here is an example of SMOTEENN in action. Let's say the majority low_risk credit loan group is the larger purple dataset, and the minority high_risk smaller dataset is the yellow group. The yellow group was oversampled with SMOTE to produce the image below. Note that there is an area of overlap in the dataset with yellow and purple points. This area is a mixture of low_risk and high_risk loans in the data set. These two different classes of loans have similar characteristics. Thus, it will make the regular SMOTE algorithm inaccurate.
 
 To account for the mixed dataset, the ENN component of SMOTE-ENN drops the points with two nearest neighbors from different classes. Now, there are less mixed data points
 in the trouble region which was highlighted earlier. The LogisticRegression model will now have a better chance of making more reliable predictions.
-![SMOTEENN_figure2](https://courses.bootcampspot.com/courses/2638/files/2314918/preview)
 
 Thus, the high_risk credit group will achieve a similar sample size to the low_risk credit group due to oversampling, but not quite the same since the mixed data points are dropped due to ENN.
 Finally, when comparable sized data sets emerge, we can begin to make predictions with the LogisticRegression model.
@@ -166,7 +163,7 @@ Even through a range of the models exhibited medium to high levels of Recall, me
 `X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=1, stratify=y)`
 
 comes from this webpage:
-https://courses.bootcampspot.com/courses/2638/pages/18-dot-3-1-overview-of-logistic-regression?module_item_id=836986
+https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html
 
 
 2. Imbalanced-Learn  BalancedRandomForestClassifier
