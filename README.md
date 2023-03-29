@@ -5,10 +5,9 @@ Supervised Machine Learning Model to Predict Credit Risk
 Several supervised machine learning (ML) models were ran to predict the credit risk of loans.
 
 ### Overview
-Supervised ML models, such as LogisticRegression from the Scikit-learn library, and BalancedRandomForestClassifier and EasyEnsembleClassifier from the Imbalanced-Learn library, were compared for the accuracy, precision, and sensitivity of their predictions of loan credit risk.
+Supervised ML models, such as LogisticRegression from Scikit-learn, RandomOverSampler, SMOTE, ClusterCentroids, SMOTEENN, BalancedRandomForestClassifier and EasyEnsembleClassifier from the Imbalanced-Learn library, were compared for the accuracy, precision, and sensitivity of their predictions of loan credit risk.
 
-Data Cleaning was performed on a raw data set. The data was split into a testing and training set. A variety of resampling methods including Oversampling, Undersampling, and 
-a combination method of oversampling and undersampling (SMOTEENN) were employed to balance the data. ML models (like LogisticRegression, BalancedRandomForestClassifier, and EasyEnsembleClassifier) were fit to the resampled data and each model made predictions regarding loan credit risk.
+Data Cleaning was performed on a raw data set. The data was split into a testing and training set. A variety of resampling methods were employed to balance the data. ML models were fit to the resampled data and each model made predictions regarding loan credit risk.
 
 The dataset in question is imbalanced. Out of 68817 loans in the data set, 68470 of the loans were low credit risk and 347 of the loans were high credit risk.
 Problems may arise when ML models make predictions using an imbalanced data set. Thus, the data was stratified into subgroups during the splitting of the data into training and testing sets.
@@ -24,17 +23,18 @@ The stratification process ensured that the proportion of each class of the targ
 This helps prevent bias in the model to improve ML prediction accuracy.
 
 ## Results
-
-Describe the balanced accuracy scores and the precision and recall scores of all six machine learning models.
-Use a bulleted list for each resampling technique in the resampling .ipynb file.
-Use a bulleted list for each ensemble ML model in the second .ipynb file.
+A variety of resampling machine learning algorithms were employed to make our low_risk and high_risk credit loan groups suitable for model predictions.
+Some models were used in conjunction with LogisticRegression (RandomOverSampler, SMOTE Oversampling, ClusterCentroids Undersampling, and SMOTE_ENN).
+Two additional Ensemble models resampled our data and performed their own predictions. (BalancedRandomForestClassifier and EasyEnsembleClassifier).
 
 
 ### Naive RandomOversampling: Oversampling method with LogisticRegression
 The training dataset was resampled with the RandomOverSampling ML method from Scikit-learn. This method takes a small data set like the "high_risk" credit group of loans,
 and it randomly samples all the data. Thus, it is reusing datapoints to make the minority data set the same size as the majority data set (the "low_risk" credit loan group).
-Finally, when equally sizes data sets emerge, we can begin to make predictions.
+Finally, when equally sized data sets emerge, we can begin to make predictions.
 Here are the results from the RandomOverSampling technique with LogistcRegression ML model.
+
+![RandomOverSampling](https://github.com/willmino/Credit_Risk_Analysis/blob/main/images/RandomOverSampling.png)
 
 - Balanced Accuracy Score: 0.65
 - Precision: 0.01
@@ -51,15 +51,17 @@ However, the Precision and Recall of the Oversampling model are low. Thus, this 
 
 
 ### SMOTE Oversampling model with LogisticRegression
-The training dataset was resampled with the SMOTE oversamplingML method from Scikit-learn. SMOTE oversamling takes a small data set like the "high_risk" credit group of loans, and it creates new interpolated data points based on the existing small data set. This method may be favorable compared to RandomOverSampling because it does reuse data. Howeverm it may introduce problems with outlier data. For example, a data outlier from the "low_risk" group might actually meet the criteria of the "high_risk" group using the LogisticRegression classifier. Let't look at the SMOTE oversampling method in practice.
+The training dataset was resampled with the SMOTE oversampling ML method from Scikit-learn. SMOTE oversamling takes a small data set like the "high_risk" credit group of loans, and it creates new interpolated data points based on the existing small data set. This method may be favorable compared to RandomOverSampling because it does reuse data. Howeverm it may introduce problems with outlier data. For example, a data outlier from the "low_risk" group might actually meet the criteria of the "high_risk" group using the LogisticRegression classifier. Let't look at the SMOTE oversampling method in practice.
 After applying SMOTE oversampling, our data sets achieved the same size and more favorable for the LogisticRegression model predictions.
 Here are the results from the SMOTE Oversampling technique with LogistcRegression ML model.
+
+![SMOTE](https://github.com/willmino/Credit_Risk_Analysis/blob/main/images/SMOTE.png)
 
 - Balanced Accuracy Score: 0.62
 - Precision: 0.01
 - Recall: 0.59
 
-The accuracy score of the SMOTE OVersampling method was above 0.5, at a value of 0.62. This is also not a favorable quality.
+The accuracy score of the SMOTE oversampling method was above 0.5, at a value of 0.62. This is also not a favorable quality.
 In order for the model to be favorable, we need to observe its Precision and Recall in making successful predictions for high_risk loans.
 The Precision in this case is 0.01 which is very low. The model makes 6065 false positive predictions.
 The sheer number of false positives causes Precision to be dramatically low.
@@ -74,16 +76,59 @@ and it randomly resamples the data to be smaller data set. Thus, the low_risk cr
 Finally, when equally sizes data sets emerge, we can begin to make predictions with the LogisticRegression model.
 Here are the results from the ClusterCentroids undersampling technique with LogistcRegression ML model.
 
+![ClusterCentroids](https://github.com/willmino/Credit_Risk_Analysis/blob/main/images/ClusterCentroids.png)
+
 - Balanced Accuracy Score: 0.51
 - Precision: 0.01
 - Recall: 0.59
 
-The accuracy score of the ClusterCentroids undersampling method LogisticRegression model was 0.51. This is very low with a similar accuracy score to the SMOTE undersampling method. The Precision of the dataset is very low again at 0.01. The Recall is also very low again at 0.59. 
-The sensitivity of the model is above 50% at 0.59, being able to correctly predict over half of the high_risk loan groups.
-However, the accuracy score, precision, and recall are still very low. This model is thus not favorable.
+The accuracy score of the ClusterCentroids undersampling method LogisticRegression model was 0.51. This is very low and unfavorable.
+The Precision of the dataset is very low again at 0.01. The Recall is also very low again at 0.59. 
+The only potentially favorable aspect of this model is the Recall at a value of 0.59, being able to correctly predict over half of the high_risk loan groups. But, its still low enough to be unfavorable. The accuracy score, precision, and recall are all still very low. This model is not favorable.
 
 
-Use screenshots of your outputs tosupport your results.
+### SMOTEENN Combination Oversampling and Undersampling method with LogisticRegression
+The training dataset was resampled with the SMOTEENN ML method from Scikit-learn. This method combines the SMOTE oversampling method with the Edited Nearest Neighbors (ENN)
+algorithms. The minority class is oversampled with SMOTE. The resulting data is then cleaned with ENN. Since SMOTE creates interpolated data points depending on its nearest neighbors, sometimes the two nearest neighbors of a data point belong to two different classes. Thus, theis data point is dropped by the ENN component of SMOTE-ENN.
+
+Here is an example of SMOTEENN in action. Let's say the majority low_risk credit loan group is the larger purple dataset, and the minority high_risk smaller dataset is the yellow group. The yellow group was oversampled with SMOTE to produce the image below. Note that in the boxed area, there is a mixture of low_risk and high_risk loans in the data set. These two different classes of loans have similar characteristics. Thus, it will make the regular SMOTE algorithm inaccurate.
+![SMOTEENN_figure1](https://courses.bootcampspot.com/courses/2638/files/2314921/preview)
+
+
+To account for the mixed dataset, the ENN component of SMOTE-ENN drops the points with two nearest neighbors from different classes. Now, there are less mixed data points
+in the trouble region which was highlighted earlier. The LogisticRegression model will now have a better chance of making more reliable predictions.
+![SMOTEENN_figure2](https://courses.bootcampspot.com/courses/2638/files/2314918/preview)
+
+Thus, the high_risk credit group will achieve a similar sample size to the low_risk credit group due to oversampling, but not quite the same since the mixed data points are dropped due to ENN.
+Finally, when comparable sized data sets emerge, we can begin to make predictions with the LogisticRegression model.
+Here are the results from the SMOTEENN undersampling technique with LogistcRegression ML model.
+
+![SMOTEENN](https://github.com/willmino/Credit_Risk_Analysis/blob/main/images/SMOTEENN.png)
+
+- Balanced Accuracy Score: 0.62
+- Precision: 0.01
+- Recall: 0.70
+
+The accuracy score of the SMOTEENN combination oversampling and undersampling method with the LogisticRegression model was 0.62. This is not the lowest out of all the accuracy scores of the previous methods. The Precision of the dataset is very low again at 0.01. However, the Recall is slightly higher this time at 0.70.
+This means that the model detected 70% of the high_risk loans. 
+Despite a medium-low level accuracy score of 0.62 and a vew low Precision value of 0.01, the SMOTEENN model is more favorable because of its Recall value of 0.70.
+
+
+### BalancedRandomForestClassifier
+The training dataset was resampled and predictions were made with the BalancedRandomForestClassifier ML method. This method makes small decision trees compared to the larger decision trees made by other algorithms. Small datasets are generated from randomly sampled data. This process is called bootstrapping. Then, a small decision tree is made based on each new dataset. A different subset of features is chosen for each small decision tree. So none of these small decision trees are intended to have the same feature data inputs (independent variables). The algorithm makes predictions by passing a single data point through each tree. Each tree will make a vote on what the prediction will be. The final prediction is determined by whatever label is classified as the majority of the votes. This voting process is called Aggregation. This overall process is called Bagging (Bootstrapping + Aggregation).
+
+
+- Balanced Accuracy Score: 0.79
+- Precision: 0.04
+- Recall: 0.67
+
+
+
+### EasyEnsembleClassifier
+
+- Balanced Accuracy Score: 0.93
+- Precision: 0.07
+- Recall: 0.91
 
 
 ## Summary
