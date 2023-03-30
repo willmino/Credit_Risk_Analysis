@@ -1,7 +1,7 @@
 # Credit_Risk_Analysis
 Supervised Machine Learning Model to Predict Credit Risk
 
-## Purpoe
+## Purpose
 Several supervised machine learning (ML) models were ran to predict the credit risk of loans.
 
 ### Overview
