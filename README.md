@@ -93,8 +93,16 @@ algorithms. The minority class is oversampled with SMOTE. The resulting data is 
 
 Here is an example of SMOTEENN in action. We have two different colored datasets, yellow and purple. Let's say the majority low_risk credit loan group is a larger purple data set, and the minority high_risk smaller dataset is the smaller yellow data set. The yellow group gets oversampled with SMOTE, so it attains the same sample size as the purple group. Note that an area of overlapping yellow and purple points arises in the data set. This area is a mixture of low_risk and high_risk loans. These two different classes of loans have similar characteristics. Thus, it will make the regular SMOTE algorithm inaccurate. The overlapping points of data could be highlighted in a box for visual emphasis.
 
+![PRE_ENN](https://github.com/willmino/Credit_Risk_Analysis/blob/main/images/PRE_ENN.png)
+
+![SMOTEENN_box](https://github.com/willmino/Credit_Risk_Analysis/blob/main/images/SMOTEENN_box.png)
+
+![SMOTEENN_drop](https://github.com/willmino/Credit_Risk_Analysis/blob/main/images/SMOTEENN_drop.png)
+
 To account for the mixed dataset, the ENN component of SMOTE-ENN drops the points with two nearest neighbors from different classes. Now, there are less mixed data points
 in the trouble region which was highlighted earlier. The LogisticRegression model will now have a better chance of making more reliable predictions.
+
+
 
 Thus, the high_risk credit group will achieve a similar sample size to the low_risk credit group due to oversampling, but not quite the same since the mixed data points are dropped due to ENN.
 Finally, when comparable sized data sets emerge, we can begin to make predictions with the LogisticRegression model.
