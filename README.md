@@ -12,7 +12,7 @@ Data Cleaning was performed on a raw data set. The data was split into a testing
 The dataset in question is imbalanced. Out of 68817 loans in the data set, 68470 of the loans were low credit risk and 347 of the loans were high credit risk.
 Problems may arise when ML models make predictions using an imbalanced data set. Thus, the data was stratified into subgroups during the splitting of the data into training and testing sets.
 
-This code can be described by the following block::
+This code can be described by the following block:
 
 `from sklearn.model_selection import train_test_split`
 
@@ -51,7 +51,7 @@ However, the Precision and Recall of the Oversampling model are low. Thus, this 
 
 
 ### SMOTE Oversampling model with LogisticRegression
-The training dataset was resampled with the SMOTE oversampling ML method from Scikit-learn. SMOTE oversamling takes a small data set like the "high_risk" credit group of loans, and it creates new interpolated data points based on the existing small data set. This method may be favorable compared to RandomOverSampling because it does reuse data. Howeverm it may introduce problems with outlier data. For example, a data outlier from the "low_risk" group might actually meet the criteria of the "high_risk" group using the LogisticRegression classifier. Let't look at the SMOTE oversampling method in practice.
+The training dataset was resampled with the SMOTE oversampling ML method from Scikit-learn. SMOTE oversampling takes a small data set like the "high_risk" credit group of loans, and it creates new interpolated data points based on the existing small data set. This method may be favorable compared to RandomOverSampling because it does reuse data. Howeverm it may introduce problems with outlier data. For example, a data outlier from the "low_risk" group might actually meet the criteria of the "high_risk" group using the LogisticRegression classifier. Let't look at the SMOTE oversampling method in practice.
 After applying SMOTE oversampling, our data sets achieved the same size and more favorable for the LogisticRegression model predictions.
 Here are the results from the SMOTE Oversampling technique with LogistcRegression ML model.
 
