@@ -52,7 +52,7 @@ However, the Precision and Recall of the Oversampling model are low. Thus, this 
 
 ### SMOTE Oversampling model with LogisticRegression
 The training dataset was resampled with the SMOTE oversampling ML method from Scikit-learn. SMOTE oversampling takes a small data set like the "high_risk" credit group of loans, and it creates new interpolated data points based on the existing small data set. This method may be favorable compared to RandomOverSampling because it does not reuse data. However it may introduce problems with outlier data. For example, a data outlier from the "low_risk" group might actually meet the criteria of the "high_risk" group using the LogisticRegression classifier. Let't look at the SMOTE oversampling method in practice.
-After applying SMOTE oversampling, our data sets achieved the same size and more favorable for the LogisticRegression model predictions.
+After applying SMOTE oversampling, our data sets achieved the same size and were more favorable for the LogisticRegression model predictions.
 Here are the results from the SMOTE Oversampling technique with LogistcRegression ML model.
 
 ![SMOTE](https://github.com/willmino/Credit_Risk_Analysis/blob/main/images/SMOTE.png)
@@ -73,7 +73,7 @@ However, the Precision and Recall of the SMOTE Oversampling model are low. Thus,
 ### ClusterCentroids Undersampling method with LogisticRegression
 The training dataset was resampled with the ClusterCentroids ML method from Scikit-learn. This method takes a large data set like the "low_risk" credit group of loans,
 and it randomly resamples the data to be smaller data set. Thus, the low_risk credit group will achieve the same sample size as the smaller high_risk credit loan group.
-Finally, when equally sizes data sets emerge, we can begin to make predictions with the LogisticRegression model.
+Finally, when equally sized data sets emerge, we can begin to make predictions with the LogisticRegression model.
 Here are the results from the ClusterCentroids undersampling technique with LogistcRegression ML model.
 
 ![ClusterCentroids](https://github.com/willmino/Credit_Risk_Analysis/blob/main/images/ClusterCentroids.png)
@@ -89,9 +89,9 @@ The only potentially favorable aspect of this model is the Recall at a value of 
 
 ### SMOTEENN Combination Oversampling and Undersampling method with LogisticRegression
 The training dataset was resampled with the SMOTEENN ML method from Scikit-learn. This method combines the SMOTE oversampling method with the Edited Nearest Neighbors (ENN)
-algorithms. The minority class is oversampled with SMOTE. The resulting data is then cleaned with ENN. Since SMOTE creates interpolated data points depending on its nearest neighbors, sometimes the two nearest neighbors of a data point belong to two different classes. Thus, theis data point is dropped by the ENN component of SMOTE-ENN.
+algorithms. The minority class is oversampled with SMOTE. The resulting data is then cleaned with ENN. Since SMOTE creates interpolated data points depending on its two nearest neighbors, it can have problems making predictions when many data points have nearest neighbors of differing classes. It would be better if these heterogeneous pieces of data clustering were minimized. Thus, the ENN component of the SMOTE-ENN function drops these points which have two nearest neighbors of differing classes.
 
-Here is an example of SMOTEENN in action. Let's say the majority low_risk credit loan group is the larger purple dataset, and the minority high_risk smaller dataset is the yellow group. The yellow group was oversampled with SMOTE. Note that there is an area of overlap in the dataset with yellow and purple points. This area is a mixture of low_risk and high_risk loans in the data set. These two different classes of loans have similar characteristics. Thus, it will make the regular SMOTE algorithm inaccurate.
+Here is an example of SMOTEENN in action. We have two different colored datasets, yellow and purple. Let's say the majority low_risk credit loan group is a larger purple data set, and the minority high_risk smaller dataset is the smaller yellow data set. The yellow group gets oversampled with SMOTE, so it attains the same sample size as the purple group. Note that an area of overlapping yellow and purple points arises in the data set. This area is a mixture of low_risk and high_risk loans. These two different classes of loans have similar characteristics. Thus, it will make the regular SMOTE algorithm inaccurate. The overlapping points of data could be highlighted in a box for visual emphasis.
 
 To account for the mixed dataset, the ENN component of SMOTE-ENN drops the points with two nearest neighbors from different classes. Now, there are less mixed data points
 in the trouble region which was highlighted earlier. The LogisticRegression model will now have a better chance of making more reliable predictions.
